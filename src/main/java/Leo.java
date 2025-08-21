@@ -10,7 +10,7 @@ public class Leo {
         System.out.println(line+ "\n" + "Hello I'm Leo\n" +
                 "What can I do for you?\n" + line);
 
-        while (true) {
+        while (sc.hasNextLine()) {
             String input = sc.nextLine(); // reads input
 
             if (input.equals("bye")) {
@@ -18,7 +18,8 @@ public class Leo {
                 System.out.println("Bye. Hope to see you again soon!\n" + line);
                 break;
             } else if (input.equals("list")) {
-                System.out.println("Here are the tasks in your list");
+                System.out.println(line);
+                System.out.println("Here are the tasks in your list:");
                 for (int i=0; i<index; i++) {
                     System.out.println(i+1 + "." + array[i].toString());
                 }
@@ -27,24 +28,26 @@ public class Leo {
                 String[] parts = input.split(" ");
                 int value = Integer.parseInt(parts[parts.length-1]);
                 array[value-1].markAsDone();
-                System.out.println("Nice, I've marked this task as done:");
+                System.out.println(line);
+                System.out.println("Nice! I've marked this task as done:");
                 System.out.println(array[value-1].toString());
                 System.out.println(line);
             } else if (input.startsWith("unmark")) {
                 String[] parts = input.split(" ");
                 int value = Integer.parseInt(parts[parts.length-1]);
                 array[value-1].markAsUndone();
+                System.out.println(line);
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(array[value-1].toString());
                 System.out.println(line);
             } else if (input.startsWith("todo")) {
-                String description = input.replaceFirst("^todo\\s+", "");
+                String description = input.replaceFirst("^todo\\s+", "").trim();
                 ToDo task = new ToDo(description);
                 Leo.addTask(task);
             } else if (input.startsWith("deadline")) {
                 String[] parts = input.split("/by", 2);
                 String type = parts[0].trim();
-                String description = type.replaceFirst("^deadline\\s+", "");
+                String description = type.replaceFirst("^deadline\\s+", "").trim();
                 String date = parts[1].trim();
                 Deadline task = new Deadline(description, date);
                 Leo.addTask(task);
