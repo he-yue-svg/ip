@@ -1,8 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Leo {
-    private static Task[] array = new Task[100];
-    private static int index = 0;
+    private static List<Task> array = new ArrayList<>();
     private static String line = "----------------------------------------";
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -23,25 +24,43 @@ public class Leo {
                 } else if (trimmed.equals("list")) {
                     System.out.println(line);
                     System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < index; i++) {
-                        System.out.println(i + 1 + "." + array[i].toString());
+                    for (int i = 0; i < array.size(); i++) {
+                        System.out.println(i + 1 + "." + array.get(i).toString());
                     }
                     System.out.println(line);
                 } else if (trimmed.startsWith("mark")) {
-                    String[] parts = input.split(" ");
+                    String[] parts = trimmed.split(" ");
                     int value = Integer.parseInt(parts[parts.length - 1]);
-                    array[value - 1].markAsDone();
+                    if (value > array.size()) {
+                        throw new IndexOutOfBounds("Index does not exist");
+                    }
+                    array.get(value - 1).markAsDone();
                     System.out.println(line);
                     System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(array[value - 1].toString());
+                    System.out.println(array.get(value-1).toString());
                     System.out.println(line);
                 } else if (trimmed.startsWith("unmark")) {
-                    String[] parts = input.split(" ");
+                    String[] parts = trimmed.split(" ");
                     int value = Integer.parseInt(parts[parts.length - 1]);
-                    array[value - 1].markAsUndone();
+                    if (value > array.size()) {
+                        throw new IndexOutOfBounds("Index does not exist");
+                    }
+                    array.get(value-1).markAsUndone();
                     System.out.println(line);
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(array[value - 1].toString());
+                    System.out.println(array.get(value-1).toString());
+                    System.out.println(line);
+                } else if (trimmed.startsWith("delete")) {
+                    String[] parts = trimmed.split(" ");
+                    int value = Integer.parseInt(parts[parts.length-1]);
+                    if (value > array.size()) {
+                        throw new IndexOutOfBounds("Index does not exist");
+                    }
+                    System.out.println(line);
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.println(array.get(value-1).toString());
+                    array.remove(value-1);
+                    System.out.println("Now you have " + array.size() + " tasks in the list.");
                     System.out.println(line);
                 } else if (trimmed.startsWith("todo")) {
                     String description = trimmed.replaceFirst("^\\s*todo\\b", "").trim();
@@ -80,8 +99,10 @@ public class Leo {
                 } else if (!trimmed.isEmpty()) {
                     throw new UnknownCommand("I'm sorry, I cannot understand what you are saying");
                 }
-            } catch (NoTask | UnknownCommand err) {
+            } catch (NoTask | UnknownCommand | IndexOutOfBounds err) {
+                System.out.println(line);
                 System.out.println(err.getMessage());
+                System.out.println(line);
             }
         }
 
@@ -90,12 +111,11 @@ public class Leo {
     }
 
     private static void addTask(Task task) {
-        array[index] = task;
-        index++;
+        array.add(task);
         System.out.println(line);
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
-        System.out.println("Now you have " + index + " tasks in the list.");
+        System.out.println("Now you have " + array.size() + " tasks in the list.");
         System.out.println(line);
     }
 
