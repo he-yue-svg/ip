@@ -3,9 +3,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Leo {
-    private static List<Task> array = new ArrayList<>();
+    private static List<Task> array;
+    private static Storage storage;
     private static String line = "----------------------------------------";
     public static void main(String[] args) {
+        storage = new Storage("./data/Leo.txt");
+
+        try {
+            array = storage.load();
+        } catch (Exception e){
+            array = new ArrayList<>();
+        }
+
         Scanner sc = new Scanner(System.in);
         String line = "----------------------------------------";
         System.out.println(line+ "\n" + "Hello I'm Leo\n" +
@@ -39,6 +48,7 @@ public class Leo {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(array.get(value-1).toString());
                     System.out.println(line);
+                    storage.save(array);
                 } else if (trimmed.startsWith("unmark")) {
                     String[] parts = trimmed.split(" ");
                     int value = Integer.parseInt(parts[parts.length - 1]);
@@ -50,6 +60,7 @@ public class Leo {
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(array.get(value-1).toString());
                     System.out.println(line);
+                    storage.save(array);
                 } else if (trimmed.startsWith("delete")) {
                     String[] parts = trimmed.split(" ");
                     int value = Integer.parseInt(parts[parts.length-1]);
@@ -62,6 +73,7 @@ public class Leo {
                     array.remove(value-1);
                     System.out.println("Now you have " + array.size() + " tasks in the list.");
                     System.out.println(line);
+                    storage.save(array);
                 } else if (trimmed.startsWith("todo")) {
                     String description = trimmed.replaceFirst("^\\s*todo\\b", "").trim();
                     if (description.isEmpty()) {
@@ -69,6 +81,7 @@ public class Leo {
                     }
                     ToDo task = new ToDo(description);
                     Leo.addTask(task);
+                    storage.save(array);
                 } else if (trimmed.startsWith("deadline")) {
                     String[] parts = trimmed.split("/by", 2);
                     if (parts.length < 2) {
@@ -82,6 +95,7 @@ public class Leo {
                     }
                     Deadline task = new Deadline(description, date);
                     Leo.addTask(task);
+                    storage.save(array);
                 } else if (trimmed.startsWith("event")) {
                     String[] firstSplit = trimmed.split("/from", 2);
                     if (firstSplit.length < 2) {
@@ -96,10 +110,11 @@ public class Leo {
                     String to = secondSplit[1].trim();
                     Event task = new Event(description, start, to);
                     Leo.addTask(task);
+                    storage.save(array);
                 } else if (!trimmed.isEmpty()) {
                     throw new UnknownCommand("I'm sorry, I cannot understand what you are saying");
                 }
-            } catch (NoTask | UnknownCommand | IndexOutOfBounds err) {
+            } catch (Exception err) {
                 System.out.println(line);
                 System.out.println(err.getMessage());
                 System.out.println(line);
