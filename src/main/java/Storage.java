@@ -22,12 +22,10 @@ public class Storage {
         }
     }
 
-    public void save(List<Task> taskList) throws IOException {
+    public void save(TaskList lst) throws IOException {
         ensureParentDir();
         FileWriter fw  = new FileWriter(this.filePath, false);
-        for (Task task : taskList) {
-            fw.write(task.toSaveFormat() + System.lineSeparator());
-        }
+        lst.saveToStorage(fw);
         fw.close();
     }
 
@@ -40,7 +38,7 @@ public class Storage {
         for (String line : Files.readAllLines(Paths.get(filePath))) {
             // reads every line and takes in each line as the argument
             // parses the line
-            Task t = Task.fromSaveFormat(line);
+            Task t = Parser.fromSaveFormat(line);
             if (t != null) {
                 tasks.add(t);
             }
