@@ -1,3 +1,5 @@
+package leo;
+
 public class ExitCommand extends Command {
 
     @Override

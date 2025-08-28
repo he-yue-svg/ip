@@ -1,3 +1,5 @@
+package leo;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class TaskList {
         this.list.add(task);
     }
 
-    public void deleteTask(int index) throws IndexOutOfBounds{
+    public void deleteTask(int index) throws IndexOutOfBounds {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }

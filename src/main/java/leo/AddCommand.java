@@ -1,3 +1,5 @@
+package leo;
+
 public class AddCommand extends Command {
     Task task;
 
