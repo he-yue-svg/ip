@@ -1,3 +1,5 @@
+package leo;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -9,7 +11,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        System.out.println(line+ "\n" + "Hello I'm Leo\n" +
+        System.out.println(line+ "\n" + "Hello I'm leo.Leo\n" +
                 "What can I do for you?\n" + line);
     }
 

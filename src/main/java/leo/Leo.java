@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.ExecutionException;
+package leo;
 
 public class Leo {
     private Storage storage;
@@ -35,7 +32,7 @@ public class Leo {
     }
 
     public static void main(String[] args) {
-        new Leo("./data/Leo.txt").run();
+        new Leo("./data/leo.Leo.txt").run();
     }
 
 }
