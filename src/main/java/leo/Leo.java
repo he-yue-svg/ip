@@ -5,6 +5,10 @@ public class Leo {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Retrieves all the tasks stored in the hard disk
+     * @param filePath location of the text file to store the tasks
+     */
     public Leo(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -16,6 +20,11 @@ public class Leo {
         }
     }
 
+    /**
+     * Starts the chatbot, parse and execute line by line
+     * Terminates when c.isExit()
+     * @throws Exception if execution of commands throw errors
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
