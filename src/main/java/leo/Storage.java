@@ -22,6 +22,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the contents from the TaskList into the file linked to the storage
+     * Contents are formatted specifically
+     * @param lst TaskList containing all the tasks the current chatbot holds
+     * @throws IOException
+     */
     public void save(TaskList lst) throws IOException {
         ensureParentDir();
         FileWriter fw  = new FileWriter(this.filePath, false);
@@ -29,6 +35,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Returns the list of tasks stored in the file in filePath
+     * @return An ArrayList of tasks
+     * @throws IOException
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         if (!Files.exists(Paths.get(filePath))) {

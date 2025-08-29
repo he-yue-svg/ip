@@ -7,7 +7,14 @@ public class MarkCommand extends Command {
         this.index = index;
     }
 
-    // need an instance of an object to run this
+    /**
+     * Marks task as done in the ArrayList wrapped by the TaskList,
+     * which generates the string for that task.
+     * Ui prints this string.
+     * @param tasks
+     * @param ui
+     * @param storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {

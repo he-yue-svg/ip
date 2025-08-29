@@ -7,7 +7,6 @@ public class Deadline extends Task {
     protected LocalDate date;
     protected String stringDate;
 
-
     public Deadline(String description, String by) {
         super(description);
         this.stringDate = by;

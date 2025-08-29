@@ -9,10 +9,17 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the status whether the string is done
+     * @return String indicating if task is done
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Marks the task as done
+     */
     public void markAsDone() {
         this.isDone = true;
     }

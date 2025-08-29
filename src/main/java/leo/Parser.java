@@ -5,6 +5,11 @@ public class Parser {
 
     }
 
+    /**
+     * Interprets the different commands the user gave in the user interface
+     * @param trimmed Input given by chatbot user, with the additional spaces removed
+     * @return Command that indicates what action is to be taken with the interpreted input
+     */
     public static Command parse(String trimmed) {
         if (trimmed.equals("bye") || trimmed.equals("Bye")) {
             return new ExitCommand();
@@ -46,6 +51,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Constructs the respective tasks by interpreting each line written into the file linked to the storage
+     * @param line Each line of text in the file
+     * @return Task, indicates the different types of tasks stored in the file
+     */
     public static Task fromSaveFormat(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length < 3) return null;

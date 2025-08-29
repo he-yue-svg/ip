@@ -17,6 +17,10 @@ public class Event extends Task {
         this.endDate = LocalDate.parse(end);
     }
 
+    /**
+     * Returns string in the format in which the task will be printed on the user interface
+     * @return A string formatted to be printed on the user interface
+     */
     @Override
     public String toString() {
         return ("[E]" + super.toString() + " (from: "
@@ -26,7 +30,11 @@ public class Event extends Task {
                 + ")");
     }
 
-    // convert the task into the form written into the file
+    /**
+     * Converts the Event task into a format to be written into a file
+     * Easier to parse from file back to task
+     * @return String in the format that can be written into the file linked to storage
+     */
     @Override
     public String toSaveFormat() {
         return String.join(" | ", "E", (isDone ? "1" : "0"), description,
