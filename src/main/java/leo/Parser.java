@@ -46,6 +46,9 @@ public class Parser {
             String start = secondSplit[0].trim();
             String to = secondSplit[1].trim();
             return new AddCommand(new Event(description, start, to));
+        } else if (trimmed.startsWith("find")) {
+            String item = trimmed.replaceFirst("^\\s*find\\b", "").trim();
+            return new FindCommand(item);
         } else {
             return new DubiousCommand();
         }
