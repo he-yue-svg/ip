@@ -64,6 +64,13 @@ public class Ui {
         System.out.println(line);
     }
 
+    public void find(String str) {
+        System.out.println(line);
+        System.out.println("Here are the tasks in your list");
+        System.out.println(str);
+        System.out.println(line);
+    }
+
     public void showError (Exception e) {
         System.out.println(line);
         System.out.println(e.getMessage());

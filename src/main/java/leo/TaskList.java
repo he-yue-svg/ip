@@ -90,4 +90,17 @@ public class TaskList {
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
+
+    public String find(String str) {
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (int i=0; i<this.list.size(); i++) {
+            if (this.list.get(i).toString().contains(str)) {
+                sb.append(count+1 + ". ").append(this.list.get(i).toString()).append("\n");
+                count++;
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
 }
