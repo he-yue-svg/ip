@@ -15,13 +15,13 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return ("[D]" + super.toString() + " (by: " +
-                this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))+ ")");
+        return ("[D]" + super.toString() + " (by: "
+                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
     }
 
     @Override
     public String toSaveFormat() {
-        return String.join(" | ","D",
+        return String.join(" | ", "D",
                 (isDone ? "1" : "0"), description,
                 "by=" + this.stringDate);
     }

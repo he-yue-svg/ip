@@ -11,7 +11,7 @@ public class ListCommand extends Command {
      * @param storage Storage object of Leo.java
      */
     @Override
-    public void execute (TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             TaskList lst = new TaskList(storage.load());
             ui.iterate(lst.iterate());

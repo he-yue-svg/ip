@@ -11,8 +11,8 @@ public class Ui {
     }
 
     public void showWelcome() {
-        System.out.println(line+ "\n" + "Hello I'm leo.Leo\n" +
-                "What can I do for you?\n" + line);
+        System.out.println(line + "\n" + "Hello I'm leo.Leo\n"
+                + "What can I do for you?\n" + line);
     }
 
     public void goodBye() {
@@ -71,7 +71,7 @@ public class Ui {
         System.out.println(line);
     }
 
-    public void showError (Exception e) {
+    public void showError(Exception e) {
         System.out.println(line);
         System.out.println(e.getMessage());
         System.out.println(line);

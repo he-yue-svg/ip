@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-    List<Task> list;
+    private List<Task> list;
 
     public TaskList() {
-        this.list  = new ArrayList<Task>();
+        this.list = new ArrayList<Task>();
     }
 
     public TaskList(List<Task> lst) {
@@ -37,21 +37,21 @@ public class TaskList {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
-        this.list.remove(index-1);
+        this.list.remove(index - 1);
     }
 
-    public void markDone(int index) throws IndexOutOfBounds{
+    public void markDone(int index) throws IndexOutOfBounds {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
-        this.list.get(index-1).markAsDone();
+        this.list.get(index - 1).markAsDone();
     }
 
-    public void markUndone(int index) throws IndexOutOfBounds{
+    public void markUndone(int index) throws IndexOutOfBounds {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
-        this.list.get(index-1).markAsUndone();
+        this.list.get(index - 1).markAsUndone();
     }
 
     /**
@@ -75,7 +75,7 @@ public class TaskList {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
-        return this.list.get(index-1).toString();
+        return this.list.get(index - 1).toString();
     }
 
     /**
@@ -84,8 +84,8 @@ public class TaskList {
      */
     public String iterate() {
         StringBuilder sb = new StringBuilder();
-        for (int i=0; i<this.list.size(); i++) {
-            sb.append(i+1 + ". ").append(this.list.get(i).toString()).append("\n");
+        for (int i = 0; i < this.list.size(); i++) {
+            sb.append(i + 1 + ". ").append(this.list.get(i).toString()).append("\n");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
@@ -94,9 +94,9 @@ public class TaskList {
     public String find(String str) {
         StringBuilder sb = new StringBuilder();
         int count = 0;
-        for (int i=0; i<this.list.size(); i++) {
+        for (int i = 0; i < this.list.size(); i++) {
             if (this.list.get(i).toString().contains(str)) {
-                sb.append(count+1 + ". ").append(this.list.get(i).toString()).append("\n");
+                sb.append(count + 1 + ". ").append(this.list.get(i).toString()).append("\n");
                 count++;
             }
         }

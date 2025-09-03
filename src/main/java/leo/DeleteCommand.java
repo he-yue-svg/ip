@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
         try {
             tasks.deleteTask(index);
             int size = tasks.size();
-            ui.taskDeleted(tasks.elem(size-1), size);
+            ui.taskDeleted(tasks.elem(size - 1), size);
             storage.save(tasks);
         } catch (Exception err) {
             System.out.println(err.getMessage());
