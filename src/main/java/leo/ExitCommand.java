@@ -3,8 +3,8 @@ package leo;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.goodBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.goodBye();
     }
 
     @Override
