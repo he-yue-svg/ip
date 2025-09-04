@@ -16,14 +16,14 @@ public class DeleteCommand extends Command {
      * @param storage Storage object of Leo.java, linked to a file where data will be written and stored
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             tasks.deleteTask(index);
             int size = tasks.size();
-            ui.taskDeleted(tasks.elem(size - 1), size);
             storage.save(tasks);
+            return ui.taskDeleted(tasks.elem(size - 1), size);
         } catch (Exception err) {
-            System.out.println(err.getMessage());
+            return ui.showError(err);
         }
     }
 }

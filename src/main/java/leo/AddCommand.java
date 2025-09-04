@@ -17,14 +17,14 @@ public class AddCommand extends Command {
      * @param storage The Storage object of Leo.java, used to write the tasks into a file
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             tasks.addTask(task);
             int size = tasks.size();
-            ui.taskAdded(tasks.elem(size), size);
             storage.save(tasks);
+            return ui.taskAdded(tasks.elem(size), size);
         } catch (Exception e) {
-            ui.showError(e);
+            return ui.showError(e);
         }
 
     }

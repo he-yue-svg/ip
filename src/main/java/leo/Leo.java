@@ -40,6 +40,17 @@ public class Leo {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String response = c.execute(tasks, ui, storage);
+            return response;
+        } catch (Exception e) {
+            return ui.showError(e);
+        }
+    }
+
+
     public static void main(String[] args) {
         new Leo("./data/leo.Leo.txt").run();
     }

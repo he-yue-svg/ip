@@ -11,12 +11,12 @@ public class ListCommand extends Command {
      * @param storage Storage object of Leo.java
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             TaskList lst = new TaskList(storage.load());
-            ui.iterate(lst.iterate());
+            return ui.iterate(lst.iterate());
         } catch (Exception e) {
-            ui.showError(e);
+            return ui.showError(e);
         }
     }
 }
