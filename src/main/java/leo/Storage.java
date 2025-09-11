@@ -17,6 +17,7 @@ public class Storage {
     }
 
     private void ensureParentDir() {
+        assert this.filePath != null : "filePath must exist";
         File f = new File(filePath).getParentFile();
         if (f != null && !f.exists()) {
             f.mkdirs(); // create ./data/ if missing

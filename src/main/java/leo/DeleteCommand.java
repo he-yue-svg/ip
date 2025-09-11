@@ -17,8 +17,11 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert index > 0 : "Task index should be positive";
         try {
+            int before = tasks.size();
             tasks.deleteTask(index);
+            assert tasks.size() == before - 1;
             int size = tasks.size();
             storage.save(tasks);
             return ui.taskDeleted(tasks.elem(size - 1), size);
