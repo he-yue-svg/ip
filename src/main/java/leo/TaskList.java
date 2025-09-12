@@ -26,6 +26,8 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.list.add(task);
+        int before = this.list.size();
+        assert this.list.size() == before + 1 : "TaskList size should increase after addTask";
     }
 
     /**
@@ -37,7 +39,9 @@ public class TaskList {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
+        int before = this.list.size();
         this.list.remove(index - 1);
+        assert this.list.size() == before - 1 : "TaskList size should decrease after deleteTask";
     }
 
     public void markDone(int index) throws IndexOutOfBounds {
@@ -75,7 +79,9 @@ public class TaskList {
         if (index > this.list.size() || index <= 0) {
             throw new IndexOutOfBounds("Index not present");
         }
-        return this.list.get(index - 1).toString();
+        String result = this.list.get(index - 1).toString();
+        assert result != null && !result.isBlank() : "elem() should not return a blank string";
+        return result;
     }
 
     /**
@@ -92,6 +98,7 @@ public class TaskList {
     }
 
     public String find(String str) {
+        assert str != null : "Search string must not be null";
         StringBuilder sb = new StringBuilder();
         int count = 0;
         for (int i = 0; i < this.list.size(); i++) {

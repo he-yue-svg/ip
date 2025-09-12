@@ -5,6 +5,8 @@ public abstract class Task {
     protected boolean isDone;
 
     public Task(String description) {
+        assert description != null && !description.isBlank()
+                : "Task description must not be null/blank";
         this.description = description;
         this.isDone = false;
     }
@@ -14,6 +16,8 @@ public abstract class Task {
      * @return String indicating if task is done
      */
     public String getStatusIcon() {
+        assert this.isDone == true || this.isDone == false
+                : "isDone should always be a boolean";
         return (isDone ? "X" : " ");
     }
 

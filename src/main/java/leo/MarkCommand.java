@@ -17,6 +17,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        assert this.index > 0 : "Index must be positive";
         try {
             tasks.markDone(index);
             storage.save(tasks);
