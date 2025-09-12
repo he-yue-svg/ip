@@ -11,6 +11,7 @@ public class Leo {
      */
     public Leo(String filePath) {
         ui = new Ui();
+        assert filePath != null && filePath.isBlank() : "filePath must be non-empty";
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
@@ -18,6 +19,8 @@ public class Leo {
             ui.showError(e);
             tasks = new TaskList();
         }
+        assert this.storage != null : "storage must be initialized";
+        assert this.tasks != null : "tasks must be initiliazed";
     }
 
     /**
@@ -31,7 +34,9 @@ public class Leo {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
+                assert fullCommand != null : "Ui.readCommand() returned null";
                 Command c = Parser.parse(fullCommand);
+                assert c != null : "Parser.parse returned null";
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (Exception e) {
@@ -41,9 +46,12 @@ public class Leo {
     }
 
     public String getResponse(String input) {
+        assert input != null : "input to getResponse must not be null";
         try {
             Command c = Parser.parse(input);
+            assert c != null : "Parser.parse returned null";
             String response = c.execute(tasks, ui, storage);
+            assert response != null : "Command.execute returned null";
             return response;
         } catch (Exception e) {
             return ui.showError(e);

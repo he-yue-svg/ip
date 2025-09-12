@@ -11,6 +11,7 @@ public class Parser {
      * @return Command that indicates what action is to be taken with the interpreted input
      */
     public static Command parse(String trimmed) {
+        assert trimmed != null && !trimmed.isBlank() : "trimmed should not be null or an empty string";
         if (trimmed.equals("bye") || trimmed.equals("Bye")) {
             return new ExitCommand();
 
