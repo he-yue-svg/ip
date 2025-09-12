@@ -2,8 +2,10 @@ package leo;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private List<Task> list;
@@ -91,7 +93,9 @@ public class TaskList {
     public String iterate() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.list.size(); i++) {
-            sb.append(i + 1 + ". ").append(this.list.get(i).toString()).append("\n");
+            String index = i + 1 + ". ";
+            String content = this.list.get(i).toString();
+            sb.append(i + 1 + ". ").append(content).append("\n");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
@@ -103,9 +107,29 @@ public class TaskList {
         int count = 0;
         for (int i = 0; i < this.list.size(); i++) {
             if (this.list.get(i).toString().contains(str)) {
-                sb.append(count + 1 + ". ").append(this.list.get(i).toString()).append("\n");
+                String idx = count + 1 + ". ";
+                String content = this.list.get(i).toString();
+                sb.append(idx).append(content).append("\n");
                 count++;
             }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
+    public String getUpcoming(int days) {
+        LocalDate now = LocalDate.now();
+        LocalDate max = now.plusDays(days);
+        List<Task> lst = this.list.stream()
+                .filter(x -> x.isUpcoming(now, max))
+                .collect(Collectors.toList());
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (Task task : lst) {
+            String idx = count + 1 + ". ";
+            String content = task.toString();
+            sb.append(idx).append(content).append("\n");
+            count++;
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
