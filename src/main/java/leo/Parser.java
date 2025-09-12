@@ -44,6 +44,10 @@ public class Parser {
         } else if (trimmed.startsWith("find")) {
             String item = trimmed.replaceFirst("^\\s*find\\b", "").trim();
             return new FindCommand(item);
+        } else if (trimmed.startsWith("remind")) {
+            String[] parts = trimmed.split(" ");
+            int value = Integer.parseInt(parts[parts.length - 1]);
+            return new RemindCommand(value);
         } else {
             return new DubiousCommand();
         }

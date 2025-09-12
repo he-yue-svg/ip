@@ -89,6 +89,15 @@ public class Ui {
         return (prompt + "\n" + str);
     }
 
+    public String showUpcoming(String str, int days) {
+        String prompt = "Here are the tasks in the upcoming " + days + " days";
+        System.out.println(line);
+        System.out.println(prompt);
+        System.out.println(str);
+        System.out.println(line);
+        return (prompt + "\n" + str);
+    }
+
     public String showError(Exception e) {
         System.out.println(line);
         System.out.println(e.getMessage());

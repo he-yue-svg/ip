@@ -1,5 +1,8 @@
 package leo;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -39,4 +42,7 @@ public abstract class Task {
 
     public abstract String toSaveFormat();
 
+    public boolean isUpcoming(LocalDate now, LocalDate max) {
+        return false;
+    }
 }
