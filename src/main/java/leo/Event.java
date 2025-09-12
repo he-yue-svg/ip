@@ -41,5 +41,8 @@ public class Event extends Task {
                 "from=" + start, "to=" + end);
     }
 
-
+    @Override
+    public boolean isUpcoming(LocalDate now, LocalDate max) {
+        return !this.endDate.isBefore(now) && !this.startDate.isAfter(max);
+    }
 }
