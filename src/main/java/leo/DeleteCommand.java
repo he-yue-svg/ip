@@ -1,5 +1,7 @@
 package leo;
 
+import java.io.IOException;
+
 public class DeleteCommand extends Command {
     private int index;
 
@@ -25,7 +27,9 @@ public class DeleteCommand extends Command {
             int size = tasks.size();
             storage.save(tasks);
             return ui.taskDeleted(tasks.elem(size - 1), size);
-        } catch (Exception err) {
+        } catch (IndexOutOfBounds err) {
+            return ui.showError(err);
+        } catch (IOException err) {
             return ui.showError(err);
         }
     }

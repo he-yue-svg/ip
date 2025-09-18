@@ -1,5 +1,7 @@
 package leo;
 
+import java.io.IOException;
+
 public class UnmarkCommand extends Command {
     private int index;
 
@@ -14,7 +16,9 @@ public class UnmarkCommand extends Command {
             tasks.markUndone(index);
             storage.save(tasks);
             return ui.showUnmarked(tasks.elem(index));
-        } catch (Exception err) {
+        } catch (IndexOutOfBounds err) {
+            return ui.showError(err);
+        } catch (IOException err) {
             return ui.showError(err);
         }
     }
