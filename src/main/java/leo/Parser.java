@@ -10,7 +10,7 @@ public class Parser {
      * @param trimmed Input given by chatbot user, with the additional spaces removed
      * @return Command that indicates what action is to be taken with the interpreted input
      */
-    public static Command parse(String trimmed) {
+    public static Command parse(String trimmed) throws UnknownCommand {
         assert trimmed != null && !trimmed.isBlank() : "trimmed should not be null or an empty string";
         if (trimmed.equals("bye") || trimmed.equals("Bye")) {
             return new ExitCommand();
@@ -49,7 +49,7 @@ public class Parser {
             int value = Integer.parseInt(parts[parts.length - 1]);
             return new RemindCommand(value);
         } else {
-            return new DubiousCommand();
+            throw new UnknownCommand("I cannot understand what you said");
         }
     }
 
