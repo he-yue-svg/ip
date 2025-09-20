@@ -1,30 +1,45 @@
-# Duke User Guide
+# Leo User Guide
 
-// Update the title above to match the actual product name
+<img src="./src/Ui.png>
 
-// Product screenshot goes here
+# Introduction
+Leo is a simple command-line chatbot for managing tasks. It supports three types:
+To-dos: tasks without dates.
+Deadlines: tasks to finish by a certain date.
+Events: activities with a start and end date.
 
-// Product intro goes here
+Tasks are saved automatically to a local file and reloaded each time you run Leo.
 
-## Adding deadlines
+# Adding Tasks
+Deadline: deadline <description> /by <yyyy-mm-dd>
+Example: deadline finish assignment /by 2025-09-30
+Output: [D][ ] finish assignment (by: 2025-09-30)
 
-// Describe the action and its outcome.
+Event: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>
+Example: event project meeting /from 2025-09-20 /to 2025-09-20
+Output: [E][ ] project meeting (from: 2025-09-20 to: 2025-09-20)
 
-// Give examples of usage
+To-do: todo <description>
+Example: todo read a book
+Output: [T][ ] read a book
 
-Example: `keyword (optional arguments)`
+# Managing Tasks
+List tasks: list
+Example :
+list
+1. [D][ ] finish assignment (by: 2025-09-30)
+2. [E][ ] project meeting (from: 2025-09-20 to: 2025-09-20)
+3. [T][ ] read a book
 
-// A description of the expected outcome goes here
+Mark as done: mark <task number>
 
-```
-expected output
-```
+Delete task: delete <task number>
 
-## Feature ABC
-
-// Feature details
+Use bye to close Leo. 
+Example: 
+Bye. Hope to see you again soon!
 
 
-## Feature XYZ
-
-// Feature details
+## Acknowledgments
+The `Storage` class and TaskListTest were initially generated with assistance from ChatGPT (GPT-5 Thinking, Sep 18, 2025).
+I adapted and reviewed the code for this project.
