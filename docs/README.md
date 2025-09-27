@@ -1,6 +1,6 @@
 # Leo User Guide
 
-<img src="Ui.png" alt="UI image">
+<img src="docs/Ui.png" alt="UI image">
 
 # Introduction
 Leo is a simple command-line chatbot for managing tasks. It supports three types:
